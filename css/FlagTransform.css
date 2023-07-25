@@ -1,0 +1,52 @@
+:root {
+    --height: 100px; /* 将高度定义为一个变量 */
+}
+
+html, body {
+    height: 100%;
+    background-color: rgb(41, 41, 41);
+}
+
+#panel {
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#textDisplay {
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2%;
+}
+
+.flag {
+    height: calc(var(--height) * 2);
+    width: var(--height);
+    transition: transform 0.1s;
+    border: #000000, 5px;
+
+}
+
+#left {
+    background-color: #0055A4;
+}
+
+#center {
+    background-color: #ffffff;
+}
+
+#right {
+    background-color: #EF4135;
+}
+
+#text {
+    font-size: xx-large;
+    color: #ffffff;
+}
+
+.flag:hover {
+    transform: scale(1.01);
+}
