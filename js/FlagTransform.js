@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //console.log("屏幕宽度：" + screenWidth + " 像素");
 
+    document.body.addEventListener('contextmenu', function (event) {
+        // 阻止默认右击菜单的显示
+        event.preventDefault();
+    });
+    
     flag[0].addEventListener('click', function() {
         // 获取当前元素的宽度
         const currentWidth = flag[0].offsetWidth;
