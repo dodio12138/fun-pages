@@ -1,0 +1,74 @@
+html, body {
+    height: 100%;
+    background-color: rgb(41, 41, 41);
+    margin: 0%;
+}
+
+.system{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 77.6482401% 0.2722151% 0.6751827% 0.7115524% 0.3789814% 7.9759023% 6.7237128% 2.8514531% 2.7627601%;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    align-items: center;
+}
+
+.planet{
+    width: 100%; /* 设置每个行星的高度 */
+    border-radius: 100%; /* 将每个行星变成圆形 */
+}
+
+#Solar{
+    width: 109.25111143px;
+    height: 109.25111143px;
+    background-color: #f0450c;
+}
+
+#Mercury{
+    width: 0.38258623655px;
+    height: 0.38258623655px;
+    background-color: #FE975D;
+}
+
+#Venus{
+    width: 0.94986147565px;
+    height: 0.94986147565px;
+    background-color: #CF4418;
+}
+
+#Earth{
+    width: 1px;
+    height: 1px;
+    background-color: #2590C7;
+}
+
+#Mars{
+    width: 0.53250740216px;
+    height: 0.53250740216px;
+    background-color: #F6935C;
+}
+
+#Jupiter{
+    width: 10.97238251px;
+    height: 10.97238251px;
+    background-color: #A51B00;
+}
+
+#Saturn{
+    width: 9.1057484912px;
+    height: 9.1057484912px;
+    background-color: #FA8F2D;
+}
+
+#Uranus{
+    width: 3.9790572079px;
+    height: 3.9790572079px;
+    background-color: #63D7D4;
+}
+
+#Neptune{
+    width: 3.8708766406px;
+    height: 3.8708766406px;
+    background-color: #2B669E;
+}
