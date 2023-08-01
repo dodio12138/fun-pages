@@ -15,7 +15,7 @@ html, body {
     margin: 0%;
     justify-items: center;
     justify-content: center;
-    margin-top: -50%;
+    margin-top: -200%;
 }
 
 .planet{
@@ -55,7 +55,7 @@ html, body {
 }
 
 #Earth:hover{
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 #Mars{
