@@ -1,0 +1,221 @@
+:root {
+    --height: 100px; /* 将高度定义为一个变量 */
+}
+
+html, body {
+    height: 100%;
+    background-color: rgb(41, 41, 41);
+}
+
+.uk-flag {
+    width: 500px;
+    height: 300px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.s{
+    width: 500px;
+    height: 300px;
+    background-color: #00247D;
+    position: absolute;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.s-x1{
+    width: 60px;
+    height: 600px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateZ(59.04deg);
+    z-index: 3;
+}
+
+.s-x2{
+    width: 60px;
+    height: 600px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateZ(-59.04deg);
+    z-index: 3;
+}
+
+.i{
+    width: 500px;
+    height: 300px;
+    background-color: #ffffff;
+    position: absolute;
+    overflow: hidden;
+}
+
+.i-x1{
+    width: 60px;
+    height: 300px;
+    clip-path: polygon(16.67% 0, 50% 0, 50% 100%, 16.67% 100%);
+    background-color: 	#CF142B;
+    position: absolute;
+    left: 75%;
+    top: 25%;
+    transform: translate(-50%, -50%) rotateZ(59.04deg);
+    z-index: 2;
+}
+
+.i-x2{
+    width: 60px;
+    height: 300px;
+    clip-path: polygon(16.67% 0, 50% 0, 50% 100%, 16.67% 100%);
+    background-color: 	#CF142B;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    transform: translate(-50%, -50%) rotateZ(-59.04deg);
+    z-index: 2;
+}
+
+.i-x3{
+    width: 60px;
+    height: 300px;
+    clip-path: polygon(50% 0, 83.33% 0, 83.33% 100%, 50% 100%);
+    background-color: 	#CF142B;
+    position: absolute;
+    left: 25%;
+    top: 75%;
+    transform: translate(-50%, -50%) rotateZ(59.04deg);
+    z-index: 2;
+}
+
+.i-x4{
+    width: 60px;
+    height: 300px;
+    clip-path: polygon(50% 0, 83.33% 0, 83.33% 100%, 50% 100%);
+    background-color: 	#CF142B;
+    position: absolute;
+    left: 75%;
+    top: 75%;
+    transform: translate(-50%, -50%) rotateZ(-59.04deg);
+    z-index: 2;
+}
+
+.e{
+    width: 500px;
+    height: 300px;
+    background-color: #ffffff;
+    position: absolute;
+    overflow: hidden;
+}
+
+.e-x1{
+    width: 60px;
+    height: 300px;
+    background-color: #CF142B;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+.e-x2{
+    width: 500px;
+    height: 60px;
+    background-color: #CF142B;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.e-b1{
+    width: 20px;
+    height: 120px;
+    background-color: #ffffff;
+    position: absolute;
+    left: -15%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.e-b2{
+    width: 20px;
+    height: 120px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 115%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.e-b3{
+    width: 20px;
+    height: 120px;
+    background-color: #ffffff;
+    position: absolute;
+    left: -15%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.e-b4{
+    width: 20px;
+    height: 120px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 115%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.e-b11{
+    width: 240px;
+    height: 20px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 20%;
+    top: -15%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.e-b12{
+    width: 240px;
+    height: 20px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 20%;
+    top: 115%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.e-b13{
+    width: 240px;
+    height: 20px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 80%;
+    top: -15%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.e-b14{
+    width: 240px;
+    height: 20px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 80%;
+    top: 115%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
