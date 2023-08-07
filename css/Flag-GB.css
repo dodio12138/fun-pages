@@ -3,7 +3,7 @@
 }
 
 html, body {
-    height: 100%;
+    height: 90%;
     background-color: rgb(41, 41, 41);
 }
 
@@ -13,7 +13,7 @@ html, body {
     position: relative;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.5);
 }
 
 .s{
@@ -23,6 +23,12 @@ html, body {
     position: absolute;
     z-index: 2;
     overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.s:active{
+    transform: translateX(550px);
+    background-color: rgb(0 94 184);
 }
 
 .s-x1{
@@ -53,11 +59,12 @@ html, body {
     background-color: #ffffff;
     position: absolute;
     overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
 .i-x1{
     width: 60px;
-    height: 300px;
+    height: 315px;
     clip-path: polygon(16.67% 0, 50% 0, 50% 100%, 16.67% 100%);
     background-color: 	#CF142B;
     position: absolute;
@@ -69,7 +76,7 @@ html, body {
 
 .i-x2{
     width: 60px;
-    height: 300px;
+    height: 315px;
     clip-path: polygon(16.67% 0, 50% 0, 50% 100%, 16.67% 100%);
     background-color: 	#CF142B;
     position: absolute;
@@ -81,7 +88,7 @@ html, body {
 
 .i-x3{
     width: 60px;
-    height: 300px;
+    height: 315px;
     clip-path: polygon(50% 0, 83.33% 0, 83.33% 100%, 50% 100%);
     background-color: 	#CF142B;
     position: absolute;
@@ -93,7 +100,7 @@ html, body {
 
 .i-x4{
     width: 60px;
-    height: 300px;
+    height: 315px;
     clip-path: polygon(50% 0, 83.33% 0, 83.33% 100%, 50% 100%);
     background-color: 	#CF142B;
     position: absolute;
@@ -103,12 +110,21 @@ html, body {
     z-index: 2;
 }
 
+.i:active{
+    transform: translateX(-550px);
+}
+
+.i:active>.i-x1,.i:active>.i-x2,.i:active>.i-x3,.i:active>.i-x4{
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%);;
+}
+
 .e{
     width: 500px;
     height: 300px;
     background-color: #ffffff;
     position: absolute;
     overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
 .e-x1{
@@ -121,6 +137,12 @@ html, body {
     transform: translate(-50%, -50%);
     z-index: 3;
 }
+
+.e:active{
+    transform: translateY(-350px);
+    z-index: 3;
+}
+
 .e-x2{
     width: 500px;
     height: 60px;
