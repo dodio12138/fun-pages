@@ -1,4 +1,5 @@
 var minimize = document.getElementById("minimize");
+var close = document.getElementById("close");
 var windows = document.getElementById("mainWindow")
 var windowBody = document.getElementById("windowbody")
 var statusBody = document.getElementById("statusbody")
@@ -13,6 +14,10 @@ minimize.addEventListener("click", function() {
         windowBody.style.display = "block";
         statusBody.style.display = "flex";
     }
+});
+
+close.addEventListener("click", function() {
+    windows.style.display = 'none';
 });
 
 // 用于跟踪拖拽状态的变量
