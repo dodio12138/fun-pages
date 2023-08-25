@@ -1,5 +1,5 @@
-- [旗帜变换](https://dodio12138.github.io/FunPages/page/FlagTransform.html)
-- [模型预览](https://dodio12138.github.io/FunPages/page/ThreeJs.html)
+- [旗帜变换](https://dodio12138.github.io/fun-pages/page/FlagTransform.html)
+- [模型预览](https://dodio12138.github.io/fun-pages/page/ThreeJs.html)
 - [MeTerminal](https://dodio12138.github.io/MeTerminal/src/index.html)
 - [MePC](https://dodio12138.github.io/MeTerminal/src/MePC.html)
-- [太阳系简谱](https://dodio12138.github.io//FunPages/page/SolarSystem.html)
+- [太阳系简谱](https://dodio12138.github.io/fun-pages/page/SolarSystem.html)
