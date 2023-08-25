@@ -1,0 +1,18 @@
+body{
+    background-color: #dbdbdb;
+}
+
+#title{
+    user-select: none;
+}
+
+.window{
+    position: absolute;
+    margin: 0px !important;
+    left: 32px;
+    top: 32px;
+}
+
+#tree{
+    margin: 10px 10px 10px 10px;
+}
