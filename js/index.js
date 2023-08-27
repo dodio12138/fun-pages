@@ -54,12 +54,12 @@ document.addEventListener("mouseup", function () {
   });
 
 function checkClose(){
-    if(windows.style.display === 'none' && isClone == false ){        for(let i = 0; i < 10; i++){
+    if(windows.style.display === 'none' && isClone == false ){        for(let i = 0; i < 100; i++){
             setTimeout(() => {
                 const divCopy = windows.cloneNode(true);
                 // Calculate random x and y coordinates
-                const x = Math.floor(Math.random() * (0.9-0.2) * window.innerWidth);
-                const y = Math.floor(Math.random() * (0.9-0.2) * window.innerHeight);            
+                const x = Math.floor(Math.random() * (1-0.2) * window.innerWidth);
+                const y = Math.floor(Math.random() * (1-0.2) * window.innerHeight);            
                 // Set the position of the div copy
                 divCopy.style.position = 'absolute';
                 divCopy.style.left = x + 'px';
@@ -73,7 +73,7 @@ function checkClose(){
                 //console.log(divCopy.childNodes[1]);
                 // Append the div copy to the document body
                 document.body.appendChild(divCopy);
-              }, i * 100);
+              }, i * 10);
         }
         isClone = true;
     }
