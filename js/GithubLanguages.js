@@ -36,7 +36,7 @@ xhr.onload = function() {
                 elementDiv.style.display = 'flex';
                 elementDiv.style.gap = '8px';
                 elementDiv.innerHTML = `
-                    <span class="circle" style=" display= 'block'; background-color: ${language.color}"></span>
+                    <span class="circle" style="background-color: ${language.color}"></span>
                     <span>${ling}</span>
                 `;
                 outputDiv.appendChild(elementDiv);
