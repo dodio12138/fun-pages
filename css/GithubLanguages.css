@@ -1,43 +1,62 @@
 @font-face {
     font-family: 'Mona Sans';
     src:
-      url('../font/Mona-Sans.woff2') format('woff2 supports variations'),
-      url('../font/Mona-Sans.woff2') format('woff2-variations');
+        url('../font/Mona-Sans.woff2') format('woff2 supports variations'),
+        url('../font/Mona-Sans.woff2') format('woff2-variations');
     font-weight: 200 900;
     font-stretch: 75% 125%;
-  }
-  
-  html {
-    font-family: 'Mona Sans';
-  }
+}
 
-body{
+html {
+    font-family: 'Mona Sans';
+}
+
+body {
     margin: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.title{
+.title {
     display: block;
-    font-size: xx-large;
+    font-size: xxx-large;
     text-align: center;
+    margin-bottom: 10px;
+    font-weight: bolder;
+    user-select: none;
 }
 
-.list{
+#list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 10%;
+}
+
+#l_type{
+    display: block;
+    font-size: x-large;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-style: italic;
+    user-select: none;
+}
+
+.ling {
     display: flex;
 }
 
-.ling{
-    display: flex;
-}
-
-.item{
+.item {
     display: flex;
     gap: 8px;
+    width: 30%;
+    user-select: none;
 }
 
-.circle{
+.circle {
     display: block;
     border-radius: 8px;
     border-style: solid;
