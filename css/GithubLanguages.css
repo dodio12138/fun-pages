@@ -19,6 +19,11 @@ body{
     display: flex;
 }
 
+.item{
+    display: flex;
+    gap: 8px;
+}
+
 .circle{
     border-radius: 8px;
     border-style: solid;

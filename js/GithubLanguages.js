@@ -32,6 +32,7 @@ xhr.onload = function() {
                 const language = parsedData[ling];
                 const elementDiv = document.createElement("div");
                 console.log(language.color);
+                elementDiv.className = 'item';
                 elementDiv.style.display = 'flex';
                 elementDiv.style.gap = '8px';
                 elementDiv.innerHTML = `
