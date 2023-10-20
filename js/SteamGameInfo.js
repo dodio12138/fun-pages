@@ -2,21 +2,19 @@
 const outputDiv = document.getElementById("list");
 const l_types = document.getElementById("l_type");
 
-// 构建YAML文件的路径
-// const yamlFilePath = '../res/languages.yaml'; // 替换为实际的文件名和路径
 
-const yamlFilePath = 'https://raw.githubusercontent.com/github-linguist/linguist/master/lib/linguist/languages.yml'; // 替换为实际的文件名和路径
-// 使用XMLHttpRequest对象读取YAML文件
+const jsonFilePath = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=3D4750BA1A6F2D58B55552B74420E197&steamid=76561198806925309&format=json&include_appinfo=true'; // 替换为实际的文件名和路径
+// 使用XMLHttpRequest对象读取JSON文件
 const xhr = new XMLHttpRequest();
-xhr.open('GET', yamlFilePath, true);
+xhr.open('GET', jsonFilePath, true);
 
 
 xhr.onload = function() {
     if (xhr.status === 200) {
-        const yamlData = xhr.responseText;
+        const jsonData = xhr.responseText;
         try {
             // 解析YAML数据
-            const parsedData = jsyaml.load(yamlData);
+            const parsedData = jsyaml.load(jsonData);
 
             // 清空输出容器
             outputDiv.innerHTML = "";
