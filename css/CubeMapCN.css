@@ -1,5 +1,59 @@
+body{
+    width: 60%;
+    position: absolute;
+    perspective: 1000px;
+    z-index: 1;
+    background-color: #7e7e7e;
+}
+
+#map{
+    position: absolute;
+    z-index: 5;
+}
+
 .cls-1 {
-    fill: #d7d7d7;
+    fill: #ffffff;
     stroke: black;
-    stroke-width: 10px;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    position: absolute;
+    transition: transform 0.2s;
+    z-index: 1;
+    animation: colorChangeOut 0.2s forwards;
+  }
+  .cls-1:hover{
+    stroke-width: 3px;
+    transform: scale(1.0) translateZ(1000px);
+    animation: colorChange 0.2s forwards;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  g {
+    stroke-width: 1px;
+    transition: transform 0.2s;
+    position: absolute;
+  }
+
+  g:hover{
+    transform: scale(1) translateZ(1000px);
+    cursor: pointer;
+  }
+
+  @keyframes colorChange {
+    0% {
+        fill: #ffffff; /* 初始颜色 */
+    }
+    100% {
+        fill: #e1e1e1; /* 最终颜色 */
+    }
+  }
+
+  @keyframes colorChangeOut {
+    100% {
+        fill: #ffffff; /* 初始颜色 */
+    }
+    0% {
+        fill: #e1e1e1; /* 最终颜色 */
+    }
   }
