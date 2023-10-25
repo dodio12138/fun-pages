@@ -11,6 +11,20 @@ body{
     z-index: 5;
 }
 
+.color-red {
+  fill: rgb(169, 2, 2);
+}
+
+/* 绿色 */
+.color-green {
+  fill: rgb(0, 124, 0);
+}
+
+/* 蓝色 */
+.color-blue {
+  fill: rgb(1, 1, 133);
+}
+
 .cls-1 {
     fill: #ffffff;
     stroke: black;
