@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+    background-color: rgb(41, 41, 41);
+    margin: 0%;
+}
+
+#panel {
+    height: 100%;
+    margin: 5%;
+}
+
+.p-div {
+    position: absolute;
+    /*top: calc(2023px - 2023px);
+    left: 10%;
+    height: calc(2023px - 1949px);
+    width: 50px;*/
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    width: 50px;
+}
+
+.name {
+    writing-mode: vertical-lr; /* 从上到下（从左到右）*/
+    text-orientation: upright; /* 保持文字正立 */
+    font-weight: bolder;
+    letter-spacing: 1px;
+    color: antiquewhite;
+}
+
+.timeline {
+    width: 90vw;
+    position: absolute;
+    top: 100px;
+    z-index: 0;
+    height: 1px;
+    border-top: white dotted 1px;
+    background-color: rgba(240, 248, 255, 0);
+    display: flex;
+    align-items: center;
+}
+
+.time {
+    color: aliceblue;
+    position: relative;
+    left: -50px;
+}
