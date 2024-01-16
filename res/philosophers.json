@@ -1,8 +1,7 @@
 [
     {
         "name": "斯拉沃热·齐泽克",
-        "bornyear": 1949,
-        "deadyear": 2023
+        "bornyear": 1949
     },
     {
         "name": "路易·皮埃尔·阿尔都塞",
@@ -58,5 +57,97 @@
         "name": "弗里德里希·谢林 ",
         "bornyear": 1775,
         "deadyear": 1854
+    },
+    {
+        "name": "毛泽东",
+        "bornyear": 1893,
+        "deadyear": 1976
+    },
+    {
+        "name": "安东尼奥·弗朗切斯科·葛兰西",
+        "bornyear": 1891,
+        "deadyear": 1937
+    },
+    {
+        "name": "尼古洛·迪·贝尔纳多·代·马基雅维利",
+        "bornyear": 1469,
+        "deadyear": 1527
+    },
+    {
+        "name": "巴鲁赫·斯宾诺莎 ",
+        "bornyear": 1632,
+        "deadyear": 1677
+    },
+    {
+        "name": "孟德斯鸠",
+        "bornyear": 1689,
+        "deadyear": 1755
+    },
+    {
+        "name": "让·雅克·卢梭",
+        "bornyear": 1712,
+        "deadyear": 1788
+    },
+    {
+        "name": "加斯东·巴舍拉",
+        "bornyear": 1884,
+        "deadyear": 1962
+    },
+    {
+        "name": "乔治·康吉莱姆",
+        "bornyear": 1904,
+        "deadyear": 1995
+    },
+    {
+        "name": "让·卡瓦耶斯",
+        "bornyear": 1903,
+        "deadyear": 1944
+    },
+    {
+        "name": "尼科斯·普兰查斯",
+        "bornyear": 1936,
+        "deadyear": 1979
+    },
+    {
+        "name": "雅克·朗西埃",
+        "bornyear": 1940
+    },
+    {
+        "name": "阿兰·巴迪欧",
+        "bornyear": 1937
+    },
+    {
+        "name": "吉尔·德勒兹",
+        "bornyear": 1925,
+        "deadyear": 1995
+    },
+    {
+        "name": "米歇尔·福柯",
+        "bornyear": 1926,
+        "deadyear": 1984
+    },
+    {
+        "name": "雅克-阿兰·米勒",
+        "bornyear": 1944
+    },
+    {
+        "name": "费迪南·德·索绪尔",
+        "bornyear": 1857,
+        "deadyear": 1913
+    },
+    {
+        "name": "埃德蒙·胡塞尔",
+        "bornyear": 1859,
+        "deadyear": 1938
+    },
+    {
+        "name": "弗里德里希·威廉·尼采",
+        "bornyear": 1844,
+        "deadyear": 1900
+    },
+    {
+        "name": "雅克·德里达",
+        "bornyear": 1930,
+        "deadyear": 2004
     }
 ]

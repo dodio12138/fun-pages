@@ -1,10 +1,26 @@
 const panel = document.getElementById('panel');
 
 document.addEventListener('DOMContentLoaded', function () {
+
     //绘制时间线
     const magine = 100; //偏移量
     const jianxi = 60;
-    for (let i = 0; i < 10; i++) {
+
+    const nowyear = new Date();
+    const year = nowyear.getFullYear();
+
+    const timelineDiv = document.createElement('div');
+    timelineDiv.className = 'timeline';
+    timelineDiv.style.top = magine + 'px';
+    const timeDiv = document.createElement('div');
+    timeDiv.className = 'time';
+    timeDiv.innerHTML = year;
+
+    timelineDiv.appendChild(timeDiv);
+    panel.appendChild(timelineDiv);
+
+
+    for (let i = 0; i < 15; i++) {
         const time = 2000 - i * 50;
         const timelineDiv = document.createElement('div');
         timelineDiv.className = 'timeline';
@@ -33,8 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     const nameDiv = document.createElement('div');
                     nameDiv.className = 'name';
                     nameDiv.innerHTML = name;
-                    pDiv.style.top = (2023 - dead) * 2 + magine + 'px';
 
+                    if (dead == null) {
+                        pDiv.style.top = magine + 'px';
+                        pDiv.style.height = (year - born) * 2 + 'px';
+                    } else {
+                        pDiv.style.top = (2023 - dead) * 2 + magine + 'px';
+                        pDiv.style.height = (dead - born) * 2 + 'px';
+                    }
                     pDiv.style.left = person * jianxi + magine + 'px';
                     pDiv.style.height = (dead - born) * 2 + 'px';
                     pDiv.style.backgroundColor = randomHSLColor();
@@ -53,7 +75,7 @@ function findName(inputString) {
     if (lastDotIndex !== -1) {
         return inputString.substring(lastDotIndex + 1);
     } else {
-        return 'inputString';
+        return inputString;
     }
 };
 
