@@ -46,8 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if(newWidth >= flagsize){
             flag[0].style.width = (currentWidth - flagsize) + 'px';
             text.textContent = text.textContent.replace('法', "");
+        }else {
+            flag[0].style.width = '0px';
+            text.textContent = text.textContent.replace('法', "");
         }
-        
+        if (flag[1].style.width == (3*flagsize+'px')&&flag[0].offsetWidth==0&&flag[2].offsetWidth==0) {
+            text.textContent = '法兰西';
+            document.body.style.cursor = "url('../res/cur/3.cur'),default";
+        }
 
       });
 
@@ -74,6 +80,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 应用新的文本内容
             text.textContent = newText;}}
+        console.log(flag[1].style.width);
+        currentText = text.textContent;
+        if (flag[1].style.width == (3*flagsize+'px')&&flag[0].offsetWidth==0&&flag[2].offsetWidth==0) {
+            text.textContent = '法兰西';
+            document.body.style.cursor = "url('../res/cur/3.cur'),default";
+        }else if(flag[1].style.width == (4*flagsize+'px')&&flag[0].offsetWidth==0&&flag[2].offsetWidth==0){
+            text.textContent = '兰兰兰兰';
+            document.body.style.cursor = "url('../res/cur/1.cur'),default";
+        }
     });
 
     flag[1].addEventListener('contextmenu', function(event) {
@@ -91,8 +106,18 @@ document.addEventListener('DOMContentLoaded', function() {
             flag[1].style.width = (currentWidth - flagsize) + 'px';
             
             text.textContent = text.textContent.replace('兰', "");
+        }else {
+            flag[1].style.width = '0px';
+            text.textContent = text.textContent.replace('兰', "");
         }
-
+        console.log(flag[1].style.width);
+        if (flag[1].style.width == (3*flagsize+'px')&&flag[0].offsetWidth==0&&flag[2].offsetWidth==0) {
+            text.textContent = '法兰西';
+            document.body.style.cursor = "url('../res/cur/3.cur'),default";
+        }else if(flag[1].style.width == (2*flagsize+'px')&&flag[0].offsetWidth==0&&flag[2].offsetWidth==0){
+            text.textContent = '兰兰';
+            document.body.style.cursor = "url('../res/cur/1.cur'),default";
+        }
       });
 
     flag[2].addEventListener('click', function() {
@@ -124,6 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if(newWidth >= flagsize){
             flag[2].style.width = (currentWidth - flagsize) + 'px';
             text.textContent = text.textContent.replace('西', "");
+        }else {
+            flag[2].style.width = '0px';
+            text.textContent = text.textContent.replace('西', "");
+        }
+        if (flag[1].style.width == (3*flagsize+'px')&&flag[0].offsetWidth==0&&flag[2].offsetWidth==0) {
+            text.textContent = '法兰西';
+            document.body.style.cursor = "url('../res/cur/3.cur'),default";
         }
 
       });

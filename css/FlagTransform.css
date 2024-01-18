@@ -5,6 +5,7 @@
 html, body {
     height: 100%;
     background-color: rgb(41, 41, 41);
+    cursor: url('../res/cur/1.cur'),default;
 }
 
 #panel {
@@ -27,11 +28,13 @@ html, body {
     width: var(--height);
     transition: transform 0.1s;
     border: #000000, 5px;
+    cursor: url('../res/cur/2.cur'),default;
 
 }
 
 #left {
     background-color: #0055A4;
+    background-color: #002654;
 }
 
 #center {
@@ -40,6 +43,7 @@ html, body {
 
 #right {
     background-color: #EF4135;
+    background-color: #CE1126;
 }
 
 #text {
