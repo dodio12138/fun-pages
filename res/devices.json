@@ -1,0 +1,163 @@
+{
+  "windows": [
+    {
+      "id": "mainWindow",
+      "title": "📷 Camera Equipment",
+      "position": { "margin": "32px", "width": "300px" },
+      "items": [
+        { "name": "Sony α6300", "type": "camera" },
+        { 
+          "name": "Canon EOS 800D",
+          "status": "deleted",
+          "tooltip": "Sold second-hand for ￥3000, China, Oct 2024"
+        },
+        { "name": "GoPro HERO6 Black", "type": "camera" },
+        { "name": "Fujifilm Instax Mini 90", "type": "camera" },
+        { "name": "Panasonic HDC-SD60", "type": "camera" },
+        {
+          "name": "Lens Collection",
+          "type": "folder",
+          "children": [
+            { "name": "Tamron 28-300mm f/2.8-5.6 Di III RXD (Sony E)", "type": "camera" },
+            { "name": "Laowa 65mm f/2.8 2x Ultra Macro APO (Sony E)", "type": "camera" },
+            { "name": "Canon EF-M 50mm f/1.8 STM", "type": "camera" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mainWindow2",
+      "title": "💻 Laptop & Desktop",
+      "position": { "margin": "32px", "width": "300px" },
+      "items": [
+        {
+          "name": "HP Pavilion Power 15-cb0xx",
+          "type": "folder",
+          "children": [
+            { "name": "Intel Core i5-7300HQ @ 2.50GHz", "type": "processor" },
+            { "name": "15.6\" Full HD IPS Display (AUO41ED)", "type": "display" },
+            { 
+              "name": "Samsung 16GB DDR4-2400 (8GB x2)",
+              "type": "memory",
+              "status": "deleted",
+              "tooltip": "Upgraded memory to 24GB, London, Jul 2025"
+            },
+            { "name": "SK hynix HMA82GS6DJR8N-VK 16GB DDR4-2666MHz", "type": "memory" },
+            { "name": "King Tiger Tigo 8GB DDR4-2666MHz", "type": "memory" },
+            { "name": "HGST HTS721010A9E630 1TB 7200RPM HDD", "type": "storage" },
+            { "name": "ZHITAI PC005 Active 1TB NVMe SSD", "type": "storage" },
+            { "name": "Intel HD Graphics 630 (Integrated)", "type": "graphics" },
+            { "name": "NVIDIA GeForce GTX 1050 (2GB GDDR5)", "type": "graphics" },
+            { 
+              "name": "Windows 10 Pro & Ubuntu 24.04 LTS",
+              "type": "system",
+              "status": "deleted",
+              "tooltip": "Changed system configuration, London, Jul 2025"
+            },
+            { "name": "Windows 10 Pro & Kali 2025", "type": "system" }
+          ]
+        },
+        {
+          "name": "MSI GE76 Raider 12UHS-426",
+          "type": "folder",
+          "status": "deleted",
+          "tooltip": "Sold second-hand for ￥7600, China, Oct 2024",
+          "children": [
+            { "name": "Intel Core i9-12900HK (14-core Alder Lake)", "type": "processor" },
+            { "name": "17.3\" QHD 240Hz IPS (2560x1440, 100% DCI-P3)", "type": "display" },
+            { "name": "32GB DDR5-4800MHz (16GB x2)", "type": "memory" },
+            { "name": "Samsung 980 PRO 2TB NVMe PCIe Gen4 SSD", "type": "storage" },
+            { "name": "ZHITAI PC005 Active 2TB NVMe SSD", "type": "storage" },
+            { "name": "Intel Iris Xe Graphics (Integrated)", "type": "graphics" },
+            { "name": "NVIDIA GeForce RTX 3080 Ti Mobile (16GB GDDR6)", "type": "graphics" },
+            { "name": "Windows 11 Pro", "type": "system" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mainWindow3",
+      "title": "📱 Mobile Devices",
+      "position": { "margin": "32px", "width": "300px" },
+      "items": [
+        {
+          "name": "iPhone XR",
+          "type": "folder",
+          "children": [
+            { "name": "Apple A12 Bionic (7nm)", "type": "processor" },
+            { "name": "White", "type": "color" },
+            { "name": "3GB LPDDR4X RAM", "type": "memory" },
+            { "name": "64GB Storage", "type": "storage" },
+            { "name": "6.1\" Liquid Retina LCD", "type": "display" },
+            { "name": "1792 x 828px @ 326ppi", "type": "resolution" },
+            { "name": "12MP Single Camera", "type": "camera" }
+          ]
+        },
+        {
+          "name": "iPad mini (6th generation)",
+          "type": "folder",
+          "children": [
+            { "name": "Apple A15 Bionic (5nm)", "type": "processor" },
+            { "name": "Purple", "type": "color" },
+            { "name": "4GB LPDDR4X RAM", "type": "memory" },
+            { "name": "256GB Storage", "type": "storage" },
+            { "name": "8.3\" Liquid Retina Display", "type": "display" },
+            { "name": "2266 x 1488px @ 326ppi", "type": "resolution" },
+            { "name": "12MP Ultra Wide Front Camera", "type": "camera" },
+            { "name": "Touch ID", "type": "feature" }
+          ]
+        },
+        {
+          "name": "iPhone 13 mini",
+          "type": "folder",
+          "children": [
+            { "name": "Apple A15 Bionic (5nm)", "type": "processor" },
+            { "name": "Pink", "type": "color" },
+            { "name": "4GB LPDDR4X RAM", "type": "memory" },
+            { "name": "256GB Storage", "type": "storage" },
+            { "name": "5.4\" Super Retina XDR OLED", "type": "display" },
+            { "name": "2340 x 1080px @ 476ppi", "type": "resolution" },
+            { "name": "12MP Dual Camera System", "type": "camera" }
+          ]
+        },
+        {
+          "name": "Redmi Note 12 Turbo",
+          "type": "folder",
+          "status": "deleted",
+          "tooltip": "Stolen at Piccadilly Circus bus station, UK, Dec 2024",
+          "children": [
+            { "name": "Snapdragon 7+ Gen 2 (4nm)", "type": "processor" },
+            { "name": "Midnight Black", "type": "color" },
+            { "name": "12GB LPDDR5 RAM", "type": "memory" },
+            { "name": "1TB UFS 3.1 Storage", "type": "storage" },
+            { "name": "6.67\" AMOLED Display", "type": "display" },
+            { "name": "2400 x 1080px @ 395ppi", "type": "resolution" },
+            { "name": "50MP Triple Camera System", "type": "camera" }
+          ]
+        },
+        {
+          "name": "iPhone XS Max",
+          "type": "folder",
+          "tooltip": "Bought second-hand for £10, London, Jul 2025",
+          "children": [
+            { "name": "Apple A12 Bionic (7nm)", "type": "processor" },
+            { "name": "Gold", "type": "color" },
+            { "name": "4GB LPDDR4X RAM", "type": "memory" },
+            { "name": "256GB Storage", "type": "storage" },
+            { "name": "6.5\" Super Retina OLED", "type": "display" },
+            { "name": "2688 x 1242px @ 458ppi", "type": "resolution" },
+            { "name": "12MP Dual Camera System", "type": "camera" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mainWindow4",
+      "title": "🎮 Gaming Consoles",
+      "position": { "margin": "32px", "width": "300px" },
+      "items": [
+        { "name": "Nintendo Switch" }
+      ]
+    }
+  ]
+}

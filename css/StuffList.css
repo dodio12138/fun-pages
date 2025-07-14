@@ -3,6 +3,19 @@ body{
     user-select: none;
 }
 
+/* 只给emoji图标添加描边效果，不影响标题文字 */
+.title-bar-text::first-letter {
+    text-shadow: 
+        -1px -1px 0 #ffffff,
+        1px -1px 0 #ffffff,
+        -1px 1px 0 #ffffff,
+        1px 1px 0 #ffffff,
+        0px -1px 0 #ffffff,
+        0px 1px 0 #ffffff,
+        -1px 0px 0 #ffffff,
+        1px 0px 0 #ffffff !important;
+}
+
 #title{
     user-select: none;
 }
@@ -12,6 +25,28 @@ body{
     margin: 0px !important;
     left: 30%;
     top: 30%;
+}
+
+/* 窗口层级设置 */
+.window {
+    z-index: 1000;
+}
+
+/* 为每个窗口设置初始层级 */
+#mainWindow {
+    z-index: 1001;
+}
+
+#mainWindow2 {
+    z-index: 1000;
+}
+
+#mainWindow3 {
+    z-index: 1000;
+}
+
+#mainWindow4 {
+    z-index: 1000;
 }
 
 #mainWindow2{
@@ -37,4 +72,114 @@ body{
 
 #tree{
     margin: 10px -5px 10px -5px;
+}
+
+/* 删除状态的设备样式 - 更具体的选择器 */
+.tree-view .deleted-item,
+a.deleted-item {
+    text-decoration: line-through !important;
+    color: #666 !important;
+    opacity: 0.7 !important;
+}
+
+.tree-view .deleted-item:hover,
+a.deleted-item:hover {
+    opacity: 1 !important;
+    cursor: help !important;
+}
+
+/* 有tooltip备注的设备悬浮效果 */
+.tree-view [data-tooltip="true"]:not(.deleted-item):hover,
+a[data-tooltip="true"]:not(.deleted-item):hover {
+    color: #003d82 !important;
+    cursor: help !important;
+}
+
+/* 无tooltip备注的设备悬浮效果 */
+.tree-view [data-tooltip="false"]:not(.deleted-item):hover,
+a[data-tooltip="false"]:not(.deleted-item):hover {
+    color: #333 !important;
+    cursor: default !important;
+}
+
+/* 有子集的文件夹元素显示手指光标 */
+.tree-view summary:hover {
+    cursor: pointer !important;
+}
+
+/* 普通文件元素显示默认光标 */
+.tree-view a:hover {
+    cursor: default !important;
+}
+
+/* 关键数字信息加粗和颜色加深 */
+.key-number {
+    font-weight: bold !important;
+    /* 只加粗，不改变颜色，保持内容原有的颜色 */
+}
+
+.key-storage {
+    font-weight: bold !important;
+    color: #2c3e50 !important;
+}
+
+.key-memory {
+    font-weight: bold !important;
+    color: #8b4513 !important;
+}
+
+.key-frequency {
+    font-weight: bold !important;
+    color: #d35400 !important;
+}
+
+.key-processor {
+    font-weight: bold !important;
+    color: #27ae60 !important;
+}
+
+.key-display {
+    font-weight: bold !important;
+    color: #1a5490 !important;
+}
+
+.key-resolution {
+    font-weight: bold !important;
+    color: #7d3c98 !important;
+}
+
+.key-density {
+    font-weight: bold !important;
+    color: #e67e22 !important;
+}
+
+/* 系统类型经典配色 */
+.key-windows {
+    font-weight: bold !important;
+    color: #0078d4 !important; /* Windows经典蓝色 */
+}
+
+.key-ubuntu {
+    font-weight: bold !important;
+    color: #e95420 !important; /* Ubuntu橙色 */
+}
+
+.key-kali {
+    font-weight: bold !important;
+    color: #367bf0 !important; /* Kali蓝色 */
+}
+
+.key-apple {
+    font-weight: bold !important;
+    color: #1d1d1f !important; /* Apple黑色 */
+}
+
+.key-android {
+    font-weight: bold !important;
+    color: #3ddc84 !important; /* Android绿色 */
+}
+
+.key-nintendo {
+    font-weight: bold !important;
+    color: #e60012 !important; /* Nintendo红色 */
 }
