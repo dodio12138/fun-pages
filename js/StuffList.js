@@ -1,15 +1,11 @@
 // 窗口层级管理
 var windowZIndexCounter = 1000; // 起始z-index值
+var allWindows = []; // 动态窗口列表
+
+// 简单吸附配置
+var snapDistance = 10; // 吸附距离（像素）
 
 function bringWindowToFront(targetWindow) {
-    // 获取所有窗口
-    var allWindows = [
-        document.getElementById("mainWindow"),
-        document.getElementById("mainWindow2"),
-        document.getElementById("mainWindow3"),
-        document.getElementById("mainWindow4")
-    ];
-    
     // 将目标窗口设置为最高层级
     windowZIndexCounter++;
     targetWindow.style.zIndex = windowZIndexCounter;
@@ -24,51 +20,196 @@ function bringWindowToFront(targetWindow) {
     });
 }
 
+// 简单的窗口吸附函数（包含屏幕边缘检测）
+function snapToWindows(draggedWindow, x, y) {
+    var draggedRect = {
+        left: x,
+        top: y,
+        right: x + draggedWindow.offsetWidth,
+        bottom: y + draggedWindow.offsetHeight
+    };
+    
+    var snapX = x;
+    var snapY = y;
+    
+    // 屏幕边缘检测和限制
+    var screenWidth = window.innerWidth;
+    var screenHeight = window.innerHeight;
+    var edgeMargin = 5; // 允许窗口离屏幕边缘的最小距离
+    
+    // 限制窗口不能超出屏幕边界
+    snapX = Math.max(edgeMargin, Math.min(snapX, screenWidth - draggedWindow.offsetWidth - edgeMargin));
+    snapY = Math.max(edgeMargin, Math.min(snapY, screenHeight - draggedWindow.offsetHeight - edgeMargin));
+    
+    // 更新拖拽矩形位置（基于边缘约束后的位置）
+    draggedRect.left = snapX;
+    draggedRect.top = snapY;
+    draggedRect.right = snapX + draggedWindow.offsetWidth;
+    draggedRect.bottom = snapY + draggedWindow.offsetHeight;
+    
+    // 屏幕边缘吸附检测
+    var edgeSnapDistance = 15; // 屏幕边缘吸附距离
+    
+    // 左边缘吸附
+    if (Math.abs(draggedRect.left - 0) < edgeSnapDistance) {
+        snapX = 0;
+    }
+    // 右边缘吸附
+    else if (Math.abs(draggedRect.right - screenWidth) < edgeSnapDistance) {
+        snapX = screenWidth - draggedWindow.offsetWidth;
+    }
+    
+    // 顶部边缘吸附
+    if (Math.abs(draggedRect.top - 0) < edgeSnapDistance) {
+        snapY = 0;
+    }
+    // 底部边缘吸附
+    else if (Math.abs(draggedRect.bottom - screenHeight) < edgeSnapDistance) {
+        snapY = screenHeight - draggedWindow.offsetHeight;
+    }
+    
+    // 更新拖拽矩形位置（基于边缘吸附后的位置）
+    draggedRect.left = snapX;
+    draggedRect.top = snapY;
+    draggedRect.right = snapX + draggedWindow.offsetWidth;
+    draggedRect.bottom = snapY + draggedWindow.offsetHeight;
+    
+    // 检查与其他窗口的吸附
+    allWindows.forEach(function(otherWindow) {
+        if (!otherWindow || otherWindow === draggedWindow || 
+            otherWindow.style.display === 'none') return;
+        
+        var otherRect = otherWindow.getBoundingClientRect();
+        
+        // 检查是否在垂直范围内重叠（用于水平吸附）
+        var verticalOverlap = !(draggedRect.bottom < otherRect.top || 
+                               draggedRect.top > otherRect.bottom);
+        
+        // 检查是否在水平范围内重叠（用于垂直吸附）
+        var horizontalOverlap = !(draggedRect.right < otherRect.left || 
+                                 draggedRect.left > otherRect.right);
+        
+        if (verticalOverlap) {
+            // 左边吸附到右边
+            if (Math.abs(draggedRect.left - otherRect.right) < snapDistance) {
+                snapX = otherRect.right;
+            }
+            // 右边吸附到左边
+            else if (Math.abs(draggedRect.right - otherRect.left) < snapDistance) {
+                snapX = otherRect.left - draggedWindow.offsetWidth;
+            }
+            // 左边对齐
+            else if (Math.abs(draggedRect.left - otherRect.left) < snapDistance) {
+                snapX = otherRect.left;
+            }
+            // 右边对齐
+            else if (Math.abs(draggedRect.right - otherRect.right) < snapDistance) {
+                snapX = otherRect.right - draggedWindow.offsetWidth;
+            }
+        }
+        
+        if (horizontalOverlap) {
+            // 顶部吸附到底部
+            if (Math.abs(draggedRect.top - otherRect.bottom) < snapDistance) {
+                snapY = otherRect.bottom;
+            }
+            // 底部吸附到顶部
+            else if (Math.abs(draggedRect.bottom - otherRect.top) < snapDistance) {
+                snapY = otherRect.top - draggedWindow.offsetHeight;
+            }
+            // 顶部对齐
+            else if (Math.abs(draggedRect.top - otherRect.top) < snapDistance) {
+                snapY = otherRect.top;
+            }
+            // 底部对齐
+            else if (Math.abs(draggedRect.bottom - otherRect.bottom) < snapDistance) {
+                snapY = otherRect.bottom - draggedWindow.offsetHeight;
+            }
+        }
+    });
+    
+    // 最终边界检查：确保窗口吸附后仍在屏幕内
+    snapX = Math.max(0, Math.min(snapX, screenWidth - draggedWindow.offsetWidth));
+    snapY = Math.max(0, Math.min(snapY, screenHeight - draggedWindow.offsetHeight));
+    
+    return { x: snapX, y: snapY };
+}
+
+// 创建窗口HTML结构
+function createWindowElement(windowData, index) {
+    const windowDiv = document.createElement('div');
+    windowDiv.className = 'window';
+    windowDiv.id = windowData.id;
+    
+    // 应用位置样式
+    const position = windowData.position || {};
+    Object.keys(position).forEach(function(style) {
+        windowDiv.style[style] = position[style];
+    });
+    
+    windowDiv.innerHTML = `
+        <div class="title-bar">
+            <div class="title-bar-text">
+                ${windowData.title}
+            </div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <ul class="tree-view">
+                <!-- 数据将通过 renderItems 函数填充 -->
+            </ul>
+        </div>
+        <div class="status-bar">
+            <p class="status-bar-field">Press F1 for help</p>
+            <p class="status-bar-field">Owned by Levy Zhang</p>
+        </div>
+    `;
+    
+    return windowDiv;
+}
+
 // 数据加载和渲染功能
 async function loadDeviceData() {
     try {
         const response = await fetch('../res/devices.json');
         const data = await response.json();
-        renderDeviceData(data);
-        return Promise.resolve(); // 明确返回成功的Promise
+        createAndRenderWindows(data);
+        return Promise.resolve();
     } catch (error) {
         console.error('Failed to load device data:', error);
-        // 如果加载失败，显示错误信息
-        const allWindowsTemp = [
-            document.getElementById("mainWindow"),
-            document.getElementById("mainWindow2"),
-            document.getElementById("mainWindow3"),
-            document.getElementById("mainWindow4")
-        ];
-        allWindowsTemp.forEach(function(windowElement) {
-            if (windowElement) {
-                const titleElement = windowElement.querySelector('.title-bar-text');
-                if (titleElement) {
-                    titleElement.textContent = 'Error loading data';
-                }
-            }
-        });
+        // 创建错误提示窗口
+        const errorWindow = document.createElement('div');
+        errorWindow.className = 'window';
+        errorWindow.style.margin = '32px';
+        errorWindow.style.width = '300px';
+        errorWindow.innerHTML = `
+            <div class="title-bar">
+                <div class="title-bar-text">Error</div>
+            </div>
+            <div class="window-body">
+                <p>Failed to load device data</p>
+            </div>
+        `;
+        document.body.appendChild(errorWindow);
         return Promise.reject(error);
     }
 }
 
-function renderDeviceData(data) {
+// 创建和渲染所有窗口
+function createAndRenderWindows(data) {
+    // 清空现有窗口
+    allWindows = [];
+    
     data.windows.forEach(function(windowData, index) {
-        const windowElement = document.getElementById(windowData.id);
-        if (!windowElement) return;
+        // 创建窗口元素
+        const windowElement = createWindowElement(windowData, index);
+        document.body.appendChild(windowElement);
         
-        // 设置标题
-        const titleElement = windowElement.querySelector('.title-bar-text');
-        if (titleElement) {
-            titleElement.textContent = windowData.title;
-        }
-        
-        // 设置样式
-        if (windowData.position) {
-            Object.keys(windowData.position).forEach(function(style) {
-                windowElement.style[style] = windowData.position[style];
-            });
-        }
+        // 添加到窗口列表
+        allWindows.push(windowElement);
         
         // 渲染设备列表
         const treeElement = windowElement.querySelector('.tree-view');
@@ -86,8 +227,12 @@ function renderDeviceData(data) {
 
 // 动态调整窗口宽度函数
 function adjustWindowWidth(windowElement, treeElement) {
-    // 默认最小宽度（当前设置的300px）
-    const defaultWidth = 300;
+    // 获取用户在JSON中指定的宽度
+    const specifiedWidth = windowElement.style.width ? 
+        parseInt(windowElement.style.width.replace('px', '')) : null;
+    
+    // 默认最小宽度
+    const defaultMinWidth = 250;
     let maxTextWidth = 0;
     
     // 创建临时测量元素
@@ -112,27 +257,38 @@ function adjustWindowWidth(windowElement, treeElement) {
     // 清理临时元素
     document.body.removeChild(tempElement);
     
-    // 计算需要的宽度（添加padding和margin的空间）
+    // 计算内容需要的宽度（添加padding和margin的空间）
     const extraSpace = 60; // 考虑padding、margin、滚动条等
-    const neededWidth = maxTextWidth + extraSpace;
+    const contentNeededWidth = maxTextWidth + extraSpace;
     
-    // 设置新宽度（至少是默认宽度）
-    const newWidth = Math.max(defaultWidth, neededWidth);
-    windowElement.style.width = newWidth + 'px';
+    // 智能宽度决策逻辑
+    let finalWidth;
+    
+    if (specifiedWidth) {
+        // 如果用户指定了宽度
+        if (contentNeededWidth <= specifiedWidth) {
+            // 内容宽度小于等于指定宽度，使用指定宽度
+            finalWidth = specifiedWidth;
+            console.log(`窗口 ${windowElement.id}: 使用用户指定宽度 ${specifiedWidth}px (内容需要 ${contentNeededWidth}px)`);
+        } else {
+            // 内容宽度大于指定宽度，使用内容优化宽度
+            finalWidth = Math.max(defaultMinWidth, contentNeededWidth);
+            console.log(`窗口 ${windowElement.id}: 内容超出指定宽度，使用优化宽度 ${finalWidth}px (指定 ${specifiedWidth}px，内容需要 ${contentNeededWidth}px)`);
+        }
+    } else {
+        // 用户未指定宽度，使用自动优化
+        finalWidth = Math.max(defaultMinWidth, contentNeededWidth);
+        console.log(`窗口 ${windowElement.id}: 用户未指定宽度，使用优化宽度 ${finalWidth}px`);
+    }
+    
+    // 应用最终宽度
+    windowElement.style.width = finalWidth + 'px';
 }
 
 function initializeWindowFunctions() {
-    // 获取所有窗口
-    var allWindows = [
-        document.getElementById("mainWindow"),
-        document.getElementById("mainWindow2"),
-        document.getElementById("mainWindow3"),
-        document.getElementById("mainWindow4")
-    ];
-
     var isClone = false;
 
-    // 为每个窗口设置事件监听器
+    // 为每个动态创建的窗口设置事件监听器
     allWindows.forEach(function(windowElement) {
         if (!windowElement) return;
         
@@ -184,8 +340,11 @@ function initializeWindowFunctions() {
             var x = e.clientX - offsetX;
             var y = e.clientY - offsetY;
             
-            windowElement.style.left = x + "px";
-            windowElement.style.top = y + "px";
+            // 应用窗口吸附
+            var snapPosition = snapToWindows(windowElement, x, y);
+            
+            windowElement.style.left = snapPosition.x + "px";
+            windowElement.style.top = snapPosition.y + "px";
         });
         
         document.addEventListener("mouseup", function () {

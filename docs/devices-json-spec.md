@@ -84,9 +84,17 @@
 ### tooltip (可选)
 鼠标悬浮时显示的提示信息。
 
-**格式建议**: "描述，地点，时间"
-- 例如: "Sold second-hand for ￥3000, China, Oct 2024"
-- 例如: "Upgraded memory to 24GB, London, Jul 2025"
+**格式要求**: "动作描述 价格 购买平台，地点，时间"
+- 购买平台写在价格之后，用 "on" 或 "在" 连接
+- 支持的平台：Taobao、XianYu、eBay、Amazon等
+
+**示例**:
+- "Bought for ￥198 on Taobao, Dongtai, Aug 2020"
+- "Bought second-hand for ￥298 on Taobao, Zhenjiang, Jun 2021"
+- "Bought second-hand for ￥60 on XianYu, Dongtai, Jul 2021"
+- "Bought for £35 on eBay, Croydon, Jan 2023"
+- "Sold second-hand for ￥3000, China, Oct 2024"
+- "Upgraded memory to 24GB, London, Jul 2025"
 
 ## 命名规范
 
@@ -168,6 +176,37 @@
 - Midnight Black, Space Gray
 - Purple, Pink
 
+## 购买平台规范
+
+### 支持的购买平台
+- **Taobao**: 淘宝
+- **XianYu**: 闲鱼 (二手交易)
+- **eBay**: 海外购买
+- **Amazon**: 亚马逊
+- **JD**: 京东
+- **PDD**: 拼多多
+- **Local**: 本地实体店
+
+### 购买信息格式
+在tooltip中，购买平台应写在价格之后：
+```
+动作 [second-hand] for 价格 on 平台, 地点, 时间
+```
+
+**格式要点**:
+1. 二手购买需要标注 "second-hand"
+2. 平台名称使用英文，置于价格后用 "on" 连接
+3. 地点和时间用逗号分隔
+4. 货币符号使用对应地区符号（￥、£、$等）
+
+**示例**:
+- 新品购买: "Bought for ￥198 on Taobao, Dongtai, Aug 2020"
+- 二手购买: "Bought second-hand for ￥60 on XianYu, Dongtai, Jul 2021"
+- 海外购买: "Bought for £35 on eBay, Croydon, Jan 2023"
+- 礼品标注: "Birthday gift from BB, China, Oct 2024"
+- 出售记录: "Sold second-hand for ￥7600, China, Oct 2024"
+- 丢失记录: "Stolen at Piccadilly Circus bus station, UK, Dec 2024"
+
 ## 高亮效果
 
 根据 `type` 自动应用不同颜色高亮：
@@ -186,9 +225,48 @@
 {
   "windows": [
     {
+      "id": "mainWindow",
+      "title": "📷 Camera Equipment",
+      "position": { 
+        "margin": "32px", 
+        "width": "300px",
+        "left": "30%",
+        "top": "30%" 
+      },
+      "items": [
+        { "name": "GoPro HERO6 Black", "type": "camera" },
+        { 
+          "name": "Canon EOS 800D",
+          "status": "deleted",
+          "tooltip": "Sold second-hand for ￥3000, China, Oct 2024"
+        },
+        {
+          "name": "Film Cameras",
+          "type": "folder",
+          "children": [
+            { 
+              "name": "VIBE 501F",
+              "type": "camera",
+              "tooltip": "Bought for ￥198 on Taobao, Dongtai, Aug 2020"
+            },
+            { 
+              "name": "Canon AF35J 35mm",
+              "type": "camera",
+              "tooltip": "Bought for £35 on eBay, Croydon, Jan 2023"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "mainWindow2",
       "title": "💻 Laptop & Desktop",
-      "position": { "margin": "32px", "width": "300px" },
+      "position": { 
+        "margin": "32px", 
+        "width": "300px",
+        "left": "5%",
+        "top": "10%" 
+      },
       "items": [
         {
           "name": "HP Pavilion Power 15-cb0xx",
@@ -227,9 +305,13 @@
 3. **完整性**: 重要技术参数尽量完整
 4. **时效性**: 及时更新设备状态和tooltip信息
 5. **扩展性**: 新增type时需要在JS和CSS中添加对应的高亮规则
+6. **购买信息**: tooltip中必须包含价格和购买平台，格式统一
+7. **平台标准**: 购买平台使用英文名称，置于价格之后
 
 ## 更新日志
 
 - 2025-07-15: 初始规范文档
-- 存储设备命名格式统一为: 品牌 型号 容量 规格 类型
-- 系统类型增加经典配色高亮支持
+- 2025-07-15: 存储设备命名格式统一为: 品牌 型号 容量 规格 类型
+- 2025-07-15: 系统类型增加经典配色高亮支持
+- 2025-07-15: 添加购买平台规范，要求在价格后标注平台信息
+- 2025-07-15: 整合res/README.md内容，统一文档结构

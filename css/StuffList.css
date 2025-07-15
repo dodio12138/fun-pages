@@ -32,42 +32,10 @@ body{
     z-index: 1000;
 }
 
-/* 为每个窗口设置初始层级 */
-#mainWindow {
-    z-index: 1001;
-}
-
-#mainWindow2 {
-    z-index: 1000;
-}
-
-#mainWindow3 {
-    z-index: 1000;
-}
-
-#mainWindow4 {
-    z-index: 1000;
-}
-
-#mainWindow2{
+/* 窗口通用样式 */
+.window {
     position: absolute;
     margin: 0px !important;
-    left: 5%;
-    top: 10%;
-}
-
-#mainWindow3{
-    position: absolute;
-    margin: 0px !important;
-    left: 65%;
-    top: 15%;
-}
-
-#mainWindow4{
-    position: absolute;
-    margin: 0px !important;
-    left: 35%;
-    top: 55%;
 }
 
 #tree{

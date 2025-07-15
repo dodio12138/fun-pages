@@ -3,24 +3,65 @@
     {
       "id": "mainWindow",
       "title": "📷 Camera Equipment",
-      "position": { "margin": "32px", "width": "300px" },
+      "position": { 
+        "margin": "32px", 
+        "width": "300px",
+        "left": "30%",
+        "top": "30%"
+      },
       "items": [
+        { "name": "GoPro HERO6 Black", "type": "camera" },
         { "name": "Sony α6300", "type": "camera" },
         { 
           "name": "Canon EOS 800D",
           "status": "deleted",
-          "tooltip": "Sold second-hand for ￥3000, China, Oct 2024"
+          "tooltip": "Sold second-hand for ￥3000 offline, Dongtai, Oct 2024"
         },
-        { "name": "GoPro HERO6 Black", "type": "camera" },
         { "name": "Fujifilm Instax Mini 90", "type": "camera" },
+        { 
+          "name": "Sony Cyber-shot DSC-P73",
+          "type": "camera",
+          "tooltip": "Bought second-hand for ￥220, Zhenjiang, Jun 2021"
+        },
         { "name": "Panasonic HDC-SD60", "type": "camera" },
         {
           "name": "Lens Collection",
           "type": "folder",
           "children": [
-            { "name": "Tamron 28-300mm f/2.8-5.6 Di III RXD (Sony E)", "type": "camera" },
+            { "name": "Tamron 28-200mm f/2.8-5.6 Di III RXD (Sony E)", "type": "camera" },
             { "name": "Laowa 65mm f/2.8 2x Ultra Macro APO (Sony E)", "type": "camera" },
             { "name": "Canon EF-M 50mm f/1.8 STM", "type": "camera" }
+          ]
+        },
+        {
+          "name": "Film Cameras",
+          "type": "folder",
+          "children": [
+            { 
+              "name": "VIBE 501F",
+              "type": "camera",
+              "tooltip": "Bought for ￥198 on Taobao, Dongtai, Aug 2020"
+            },
+            { 
+              "name": "Ricoh XF-30D",
+              "type": "camera",
+              "tooltip": "Bought second-hand for ￥298 on Taobao, Zhenjiang, Jun 2021"
+            },
+            { 
+              "name": "Samsung FINO 380SE",
+              "type": "camera",
+              "tooltip": "Bought second-hand for ￥60 on XianYu, Dongtai, Jul 2021"
+            },
+            { 
+              "name": "Franka",
+              "type": "camera",
+              "tooltip": "Bought second-hand for ￥49 on XianYu, Dongtai, Jul 2021"
+            },
+            { 
+              "name": "Canon AF35J 35mm",
+              "type": "camera",
+              "tooltip": "Bought for £35 on eBay, Croydon, Jan 2023"
+            }
           ]
         }
       ]
@@ -28,14 +69,19 @@
     {
       "id": "mainWindow2",
       "title": "💻 Laptop & Desktop",
-      "position": { "margin": "32px", "width": "300px" },
+      "position": { 
+        "margin": "32px", 
+        "width": "300px",
+        "left": "5%",
+        "top": "10%"
+      },
       "items": [
         {
           "name": "HP Pavilion Power 15-cb0xx",
           "type": "folder",
           "children": [
             { "name": "Intel Core i5-7300HQ @ 2.50GHz", "type": "processor" },
-            { "name": "15.6\" Full HD IPS Display (AUO41ED)", "type": "display" },
+            { "name": "15.6\" Full HD IPS Display (1920x1080, AUO41ED)", "type": "display" },
             { 
               "name": "Samsung 16GB DDR4-2400 (8GB x2)",
               "type": "memory",
@@ -61,7 +107,7 @@
           "name": "MSI GE76 Raider 12UHS-426",
           "type": "folder",
           "status": "deleted",
-          "tooltip": "Sold second-hand for ￥7600, China, Oct 2024",
+          "tooltip": "Sold second-hand for ￥7600 offline, China, Oct 2024",
           "children": [
             { "name": "Intel Core i9-12900HK (14-core Alder Lake)", "type": "processor" },
             { "name": "17.3\" QHD 240Hz IPS (2560x1440, 100% DCI-P3)", "type": "display" },
@@ -72,13 +118,32 @@
             { "name": "NVIDIA GeForce RTX 3080 Ti Mobile (16GB GDDR6)", "type": "graphics" },
             { "name": "Windows 11 Pro", "type": "system" }
           ]
+        },
+        {
+          "name": "Dell G3 3579",
+          "type": "folder",
+          "tooltip": "Bought second-hand for £85 offline, London, Jul 2025",
+          "children": [
+            { "name": "Intel Core i7-8750H @ 2.20GHz (6-core)", "type": "processor" },
+            { "name": "15.6\" Full HD IPS Display (1920x1080)", "type": "display" },
+            { "name": "Samsung 16GB DDR4-2333MHz (8GB x2)", "type": "memory" },
+            { "name": "Intel SSD PEKNW512G8H 512GB NVMe SSD", "type": "storage" },
+            { "name": "Intel UHD Graphics 630 (Integrated)", "type": "graphics" },
+            { "name": "NVIDIA GeForce GTX 1060 Max-Q (6GB GDDR5)", "type": "graphics" },
+            { "name": "Ubuntu 24.04 LTS", "type": "system" }
+          ]
         }
       ]
     },
     {
       "id": "mainWindow3",
       "title": "📱 Mobile Devices",
-      "position": { "margin": "32px", "width": "300px" },
+      "position": { 
+        "margin": "32px", 
+        "width": "280px",
+        "left": "65%",
+        "top": "15%"
+      },
       "items": [
         {
           "name": "iPhone XR",
@@ -110,6 +175,7 @@
         {
           "name": "iPhone 13 mini",
           "type": "folder",
+          "tooltip": "Bought second-hand for ￥3500 offline, Nanjing, Sep 2023",
           "children": [
             { "name": "Apple A15 Bionic (5nm)", "type": "processor" },
             { "name": "Pink", "type": "color" },
@@ -138,7 +204,7 @@
         {
           "name": "iPhone XS Max",
           "type": "folder",
-          "tooltip": "Bought second-hand for £10, London, Jul 2025",
+          "tooltip": "Bought second-hand for £10 offline, London, Jul 2025",
           "children": [
             { "name": "Apple A12 Bionic (7nm)", "type": "processor" },
             { "name": "Gold", "type": "color" },
@@ -154,9 +220,30 @@
     {
       "id": "mainWindow4",
       "title": "🎮 Gaming Consoles",
-      "position": { "margin": "32px", "width": "300px" },
+      "position": { 
+        "margin": "32px", 
+        "width": "280px",
+        "left": "35%",
+        "top": "65%"
+      },
       "items": [
         { "name": "Nintendo Switch" }
+      ]
+    },
+    {
+      "id": "mainWindow5",
+      "title": "🚁 Drone",
+      "position": { 
+        "margin": "32px", 
+        "width": "250px",
+        "left": "60%",
+        "top": "45%" 
+      },
+      "items": [
+        { 
+          "name": "DJI Neo",
+          "tooltip": "Birthday gift from BB, China, Oct 2024"
+        }
       ]
     }
   ]
