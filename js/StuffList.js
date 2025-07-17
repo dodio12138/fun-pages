@@ -382,6 +382,103 @@ function initializeWindowFunctions() {
     }
 }
 
+// 时间格式化函数
+function formatTimeInfo(acquired, lost) {
+    let timeInfo = '';
+    
+    if (acquired) {
+        const acquiredFormatted = formatDateToEnglish(acquired);
+        timeInfo += ` ➕ ${acquiredFormatted}`;
+    }
+    
+    if (lost) {
+        const lostFormatted = formatDateToEnglish(lost);
+        timeInfo += `❌ ${lostFormatted}`;
+    }
+    
+    return timeInfo;
+}
+
+// 构建完整的工具提示信息
+function buildTooltipInfo(item) {
+    let tooltipParts = [];
+    
+    // 添加获得信息：tip | 地点 | 时间
+    if (item.acquired || item.acquiredTip || item.acquiredLocation) {
+        let acquiredInfo = '✅';
+        
+        // 添加tip信息
+        if (item.acquiredTip) {
+            acquiredInfo += `  ${item.acquiredTip}`;
+        }
+        
+        // 添加地点信息
+        if (item.acquiredLocation) {
+            acquiredInfo += ` | 📍 ${item.acquiredLocation}`;
+        }
+        
+        // 添加时间信息
+        if (item.acquired) {
+            const acquiredFormatted = formatDateToEnglish(item.acquired);
+            acquiredInfo += ` | 📅 ${acquiredFormatted}`;
+        }
+        
+        // 只有当有实际内容时才添加到数组
+        if (acquiredInfo !== '    ✅') {
+            tooltipParts.push(acquiredInfo);
+        }
+    }
+    
+    // 添加失去信息：tip | 地点 | 时间
+    if (item.lost || item.lostTip || item.lostLocation) {
+        let lostInfo = '    ❌';
+        
+        // 添加tip信息
+        if (item.lostTip) {
+            lostInfo += `  ${item.lostTip}`;
+        }
+        
+        // 添加地点信息
+        if (item.lostLocation) {
+            lostInfo += ` | 📍 ${item.lostLocation}`;
+        }
+        
+        // 添加时间信息
+        if (item.lost) {
+            const lostFormatted = formatDateToEnglish(item.lost);
+            lostInfo += ` | 📅 ${lostFormatted}`;
+        }
+        
+        // 只有当有实际内容时才添加到数组
+        if (lostInfo !== '    ❌') {
+            tooltipParts.push(lostInfo);
+        }
+    }
+    
+    // 添加原有的tooltip（如果还有的话）
+    if (item.tooltip) {
+        tooltipParts.push(item.tooltip);
+    }
+    
+    return tooltipParts.length > 0 ? tooltipParts.join(' | ') : '';
+}
+
+// 将日期格式转换为英文格式
+function formatDateToEnglish(dateStr) {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    if (dateStr.length === 7) { // YYYY-MM
+        const [year, month] = dateStr.split('-');
+        return `${months[parseInt(month) - 1]} ${year}`;
+    } else if (dateStr.length === 10) { // YYYY-MM-DD
+        const [year, month, day] = dateStr.split('-');
+        return `${months[parseInt(month) - 1]} ${parseInt(day)}, ${year}`;
+    }
+    
+    return dateStr; // 如果格式不匹配，返回原值
+}
+
 function renderItems(items) {
     if (!items || items.length === 0) return '';
     
@@ -389,7 +486,12 @@ function renderItems(items) {
         if (item.type === 'folder' && item.children) {
             // 渲染文件夹类型的项目
             const statusClass = item.status === 'deleted' ? ' class="deleted-item"' : '';
-            const tooltipAttr = item.tooltip ? ` title="${item.tooltip}" data-tooltip="true"` : ' data-tooltip="false"';
+            
+            // 构建工具提示信息
+            const tooltipInfo = buildTooltipInfo(item);
+            const tooltipAttr = tooltipInfo ? 
+                ` title="${tooltipInfo}" data-tooltip="true"` : 
+                ' data-tooltip="false"';
             
             return `
                 <li>
@@ -411,7 +513,12 @@ function renderItems(items) {
             }
             
             const classAttr = classNames.length > 0 ? ` class="${classNames.join(' ')}"` : '';
-            const tooltipAttr = item.tooltip ? ` title="${item.tooltip}" data-tooltip="true"` : ' data-tooltip="false"';
+            
+            // 构建工具提示信息
+            const tooltipInfo = buildTooltipInfo(item);
+            const tooltipAttr = tooltipInfo ? 
+                ` title="${tooltipInfo}" data-tooltip="true"` : 
+                ' data-tooltip="false"';
             
             // 根据item的type对内容进行targeted高亮处理
             const enhancedName = highlightKeyInfo(item.name, item.type);
