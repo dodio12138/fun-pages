@@ -13,6 +13,7 @@
         { 
           "name": "GoPro HERO6 Black", 
           "type": "camera",
+          "imagePath": "../res/items_pic/GoPro HERO6 Black.jpg",
           "acquired": null,
           "lost": null,
           "acquiredTip": null,
@@ -23,6 +24,7 @@
         { 
           "name": "Sony α6300", 
           "type": "camera",
+          "imagePath": "../res/items_pic/Sony α6300.jpg",
           "acquired": null,
           "lost": null,
           "acquiredTip": null,
@@ -33,6 +35,7 @@
         { 
           "name": "Canon EOS 800D",
           "status": "deleted",
+          "imagePath": "../res/items_pic/Canon EOS 800D.jpg",
           "acquired": null,
           "lost": "2024-10",
           "acquiredTip": null,
@@ -43,6 +46,7 @@
         { 
           "name": "Fujifilm Instax Mini 90", 
           "type": "camera",
+          "imagePath": "../res/items_pic/Fujifilm Instax Mini 90.jpg",
           "acquired": null,
           "lost": null,
           "acquiredTip": null,
@@ -53,6 +57,7 @@
         { 
           "name": "Sony Cyber-shot DSC-P73",
           "type": "camera",
+          "imagePath": "../res/items_pic/Sony Cyber-shot DSC-P73.jpg",
           "acquired": "2021-06",
           "lost": null,
           "acquiredTip": "Bought second-hand for ￥220",
@@ -63,6 +68,7 @@
         { 
           "name": "Panasonic HDC-SD60", 
           "type": "camera",
+          "imagePath": "../res/items_pic/Panasonic HDC-SD60.jpg",
           "acquired": null,
           "lost": null,
           "acquiredTip": null,
@@ -117,6 +123,7 @@
             { 
               "name": "VIBE 501F",
               "type": "camera",
+              "imagePath": "../res/items_pic/VIBE 501F.jpg",
               "acquired": "2020-08",
               "lost": null,
               "acquiredTip": "Bought for ￥198 on Taobao",
@@ -127,6 +134,7 @@
             { 
               "name": "Ricoh XF-30D",
               "type": "camera",
+              "imagePath": "../res/items_pic/Ricoh XF-30D.jpg",
               "acquired": "2021-06",
               "lost": null,
               "acquiredTip": "Bought second-hand for ￥298 on Taobao",
@@ -137,6 +145,7 @@
             { 
               "name": "Samsung FINO 380SE",
               "type": "camera",
+              "imagePath": "../res/items_pic/Samsung FINO 380SE.jpg",
               "acquired": "2021-07",
               "lost": null,
               "acquiredTip": "Bought second-hand for ￥60 on XianYu",
@@ -147,6 +156,7 @@
             { 
               "name": "Franka",
               "type": "camera",
+              "imagePath": "../res/items_pic/Franka.jpg",
               "acquired": "2021-07",
               "lost": null,
               "acquiredTip": "Bought second-hand for ￥49 on XianYu",
@@ -157,6 +167,7 @@
             { 
               "name": "Canon AF35J 35mm",
               "type": "camera",
+              "imagePath": "../res/items_pic/Canon AF35J 35mm.jpg",
               "acquired": "2023-01",
               "lost": null,
               "acquiredTip": "Bought for £35 on eBay",
@@ -181,6 +192,7 @@
         {
           "name": "HP Pavilion Power 15-cb0xx",
           "type": "folder",
+          "imagePath": "../res/items_pic/HP Pavilion Power 15-cb0xx.jpg",
           "acquired": null,
           "lost": null,
           "children": [
@@ -266,6 +278,7 @@
           "name": "MSI GE76 Raider 12UHS-426",
           "type": "folder",
           "status": "deleted",
+          "imagePath": "../res/items_pic/MSI GE76 Raider 12UHS-426.jpg",
           "acquired": null,
           "lost": "2024-10",
           "acquiredTip": null,
@@ -284,8 +297,29 @@
           ]
         },
         {
+          "name": "Asus ROG Strix Scar GL703GS",
+          "type": "folder",
+          "imagePath": "../res/items_pic/Asus ROG Strix Scar GL703GS.jpg",
+          "acquired": "2025-07",
+          "lost": null,
+          "acquiredTip": "Bought second-hand for £100",
+          "lostTip": null,
+          "acquiredLocation": "London",
+          "lostLocation": null,
+          "children": [
+            { "name": "Intel Core i7-8750H @ 2.20GHz (6-core Coffee Lake-H)", "type": "processor" },
+            { "name": "17.3\" Full HD LCD (AU Optronics B173HAN03.1)", "type": "display" },
+            { "name": "SK hynix HMA82GS6DJR8N-VK 32GB DDR4-2666MHz (16GB x2)", "type": "memory" },
+            { "name": "Samsung MZVLW256HEHP 256GB NVMe PCIe 3.0 x4", "type": "storage" },
+            { "name": "WD WD10SPZX-24Z10 1TB 5400RPM SATA-III", "type": "storage" },
+            { "name": "NVIDIA GeForce GTX 1070 (8GB GDDR5)", "type": "graphics" },
+            { "name": "Windows 10 Pro", "type": "system" }
+          ]
+        },
+        {
           "name": "Dell G3 3579",
           "type": "folder",
+          "imagePath": "../res/items_pic/Dell G3 3579.jpg",
           "acquired": "2025-07",
           "lost": null,
           "acquiredTip": "Bought second-hand for £85",
@@ -300,6 +334,24 @@
             { "name": "Intel UHD Graphics 630 (Integrated)", "type": "graphics" },
             { "name": "NVIDIA GeForce GTX 1060 Max-Q (6GB GDDR5)", "type": "graphics" },
             { "name": "Ubuntu 24.04 LTS", "type": "system" }
+          ]
+        },
+        {
+          "name": "HP Chromebook X360 12b",
+          "type": "folder",
+          "imagePath": "../res/items_pic/HP Chromebook X360 12b.jpg",
+          "acquired": "2025-07",
+          "lost": null,
+          "acquiredTip": "Bought for £50 on eBay",
+          "lostTip": null,
+          "acquiredLocation": "London",
+          "lostLocation": null,
+          "children": [
+            { "name": "Intel Celeron N4000", "type": "processor" },
+            { "name": "12\" Display", "type": "display" },
+            { "name": "4GB RAM", "type": "memory" },
+            { "name": "64GB eMMC Storage", "type": "storage" },
+            { "name": "Chrome OS", "type": "system" }
           ]
         }
       ]
@@ -317,6 +369,7 @@
         {
           "name": "iPhone XR",
           "type": "folder",
+          "imagePath": "../res/items_pic/iPhone XR.jpg",
           "acquired": null,
           "lost": null,
           "children": [
@@ -332,6 +385,7 @@
         {
           "name": "iPad mini (6th generation)",
           "type": "folder",
+          "imagePath": "../res/items_pic/iPad mini (6th generation).jpg",
           "acquired": null,
           "lost": null,
           "children": [
@@ -348,6 +402,7 @@
         {
           "name": "iPhone 13 mini",
           "type": "folder",
+          "imagePath": "../res/items_pic/iPhone 13 mini.jpg",
           "acquired": "2023-09",
           "lost": null,
           "acquiredTip": "Bought second-hand for ￥3500",
@@ -368,6 +423,7 @@
           "name": "Redmi Note 12 Turbo",
           "type": "folder",
           "status": "deleted",
+          "imagePath": "../res/items_pic/Redmi Note 12 Turbo.jpg",
           "acquired": null,
           "lost": "2024-12",
           "acquiredTip": null,
@@ -387,6 +443,7 @@
         {
           "name": "iPhone XS Max",
           "type": "folder",
+          "imagePath": "../res/items_pic/iPhone XS Max.jpg",
           "acquired": "2025-07",
           "lost": null,
           "acquiredTip": "Bought second-hand for £10",
@@ -417,6 +474,7 @@
       "items": [
         { 
           "name": "Nintendo Switch",
+          "imagePath": "../res/items_pic/Nintendo Switch.jpg",
           "acquired": null,
           "lost": null,
           "acquiredTip": null,
@@ -438,6 +496,7 @@
       "items": [
         { 
           "name": "DJI Neo",
+          "imagePath": "../res/items_pic/DJI Neo.jpg",
           "acquired": "2024-10",
           "lost": null,
           "acquiredTip": "Birthday gift from BB",
@@ -446,6 +505,17 @@
           "lostLocation": null
         }
       ]
+    },
+    {
+      "id": "statusWindow",
+      "title": "📊 Status",
+      "position": { 
+        "margin": "32px", 
+        "width": "250px",
+        "left": "80%",
+        "top": "50%" 
+      },
+      "items": []
     }
   ]
 }

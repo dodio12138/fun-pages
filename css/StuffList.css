@@ -151,3 +151,179 @@ a[data-tooltip="false"]:not(.deleted-item):hover {
     font-weight: bold !important;
     color: #e60012 !important; /* Nintendo红色 */
 }
+
+.key-chrome {
+    font-weight: bold !important;
+    color: #fbbc04 !important; /* Google黄色 */
+}
+
+/* 设备选择框只包围文本内容，不占据整行 */
+.tree-view a,
+.tree-view summary {
+    display: inline !important;
+    width: auto !important;
+    padding: 2px 4px !important; /* 稍微增加内边距 */
+    margin: 1px 0 !important; /* 添加小的垂直边距 */
+}
+
+/* 确保树视图列表项正常显示 */
+.tree-view li {
+    display: list-item !important;
+    list-style: none !important;
+    margin: 1px 0 !important; /* 增加垂直间距 */
+    padding: 0 !important;
+    line-height: 1.2 !important; /* 增加行高 */
+}
+
+/* 调整焦点状态的选择框样式 */
+.tree-view a:focus,
+.tree-view summary:focus {
+    outline: none !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+}
+
+/* 去除点击后的蓝色背景 */
+.tree-view a:active,
+.tree-view summary:active,
+.tree-view a:hover,
+.tree-view summary:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+}
+
+/* 确保details元素不影响布局 */
+.tree-view details {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 禁用summary的默认点击行为，只允许通过箭头展开 */
+.tree-view summary {
+    list-style: none !important;
+    cursor: default !important;
+}
+
+/* 隐藏默认的展开箭头 */
+.tree-view summary::-webkit-details-marker {
+    display: none;
+}
+
+/* 自定义展开箭头 */
+.tree-view summary::before {
+    content: "▶";
+    display: inline-block;
+    width: 12px;
+    margin-right: 4px;
+    cursor: pointer !important;
+    user-select: none;
+    transition: transform 0.1s ease;
+}
+
+/* 展开状态的箭头 */
+.tree-view details[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+/* 只有箭头区域可以点击展开 */
+.tree-view summary .summary-text {
+    cursor: default !important;
+}
+
+/* 状态窗口样式 */
+.status-container {
+    padding: 10px;
+    text-align: center;
+}
+
+.device-image-container {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #c0c0c0;
+    margin: 0 auto 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    position: relative;
+    padding: 0;
+}
+
+.device-image-container img {
+    width: 100%; /* 完全填满容器宽度 */
+    height: 100%; /* 完全填满容器高度 */
+    object-fit: cover; /* 覆盖整个容器，保持比例但可能裁剪 */
+    /* 增强复古CRT效果 */
+    filter: 
+        contrast(1.45)          /* 稍微增加对比度 */
+        brightness(0.95)        /* 降低亮度 */
+        blur(0.5px)               /* 更大的颗粒度模糊 */
+        grayscale(0.15);         /* 轻微去色，增强复古感 */
+    image-rendering: -moz-crisp-edges;    /* Firefox像素化 */
+    image-rendering: -webkit-optimize-contrast; /* Webkit优化对比度 */
+    image-rendering: pixelated;           /* 标准像素化 */
+    image-rendering: crisp-edges;         /* 清晰边缘 */
+    /* 添加噪点效果 */
+    position: relative;
+}
+
+/* 使用伪元素添加噪点纹理 */
+.device-image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, rgba(0,0,0,0.1) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0.5px, transparent 0.5px);
+    background-size: 3px 3px, 4px 4px, 2px 2px; /* 不同大小的噪点 */
+    background-position: 0 0, 2px 2px, 1px 1px;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 使用伪元素在图片上方创建内阴影效果 */
+.device-image-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 2px 2px 0px #808080, 
+                inset -2px -2px 0px #ffffff,
+                inset 3px 3px 0px #404040,
+                inset -3px -3px 0px #dfdfdf;
+    pointer-events: none; /* 允许点击穿透到图片 */
+    z-index: 2; /* 确保阴影在噪点层之上 */
+}
+
+.placeholder-text {
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+    padding: 5px;
+}
+
+.device-info {
+    margin-top: 10px;
+}
+
+#device-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+#companion-time {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+}

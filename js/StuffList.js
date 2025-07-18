@@ -147,36 +147,70 @@ function createWindowElement(windowData, index) {
         windowDiv.style[style] = position[style];
     });
     
-    windowDiv.innerHTML = `
-        <div class="title-bar">
-            <div class="title-bar-text">
-                ${windowData.title}
+    // 检查是否为状态窗口，使用特殊布局
+    if (windowData.id === 'statusWindow') {
+        windowDiv.innerHTML = `
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    ${windowData.title}
+                </div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Close"></button>
+                </div>
             </div>
-            <div class="title-bar-controls">
-                <button aria-label="Minimize"></button>
-                <button aria-label="Close"></button>
+            <div class="window-body">
+                <div class="status-container">
+                    <div class="device-image-container">
+                        <img id="device-image" src="" alt="Device Image" style="display: none;">
+                        <div class="placeholder-text">Click a device to view</div>
+                    </div>
+                    <div class="device-info">
+                        <div id="device-name"></div>
+                        <div id="companion-time"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="window-body">
-            <ul class="tree-view">
-                <!-- 数据将通过 renderItems 函数填充 -->
-            </ul>
-        </div>
-        <div class="status-bar">
-            <p class="status-bar-field">Press F1 for help</p>
-            <p class="status-bar-field">Owned by Levy Zhang</p>
-        </div>
-    `;
+            <div class="status-bar">
+                <p class="status-bar-field">Device Status</p>
+                <p class="status-bar-field">Levy's Collection</p>
+            </div>
+        `;
+    } else {
+        windowDiv.innerHTML = `
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    ${windowData.title}
+                </div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <ul class="tree-view">
+                    <!-- 数据将通过 renderItems 函数填充 -->
+                </ul>
+            </div>
+            <div class="status-bar">
+                <p class="status-bar-field">Press F1 for help</p>
+                <p class="status-bar-field">Owned by Levy Zhang</p>
+            </div>
+        `;
+    }
     
     return windowDiv;
 }
+
+// 全局变量存储设备数据
+var deviceData = null;
 
 // 数据加载和渲染功能
 async function loadDeviceData() {
     try {
         const response = await fetch('../res/devices.json');
-        const data = await response.json();
-        createAndRenderWindows(data);
+        deviceData = await response.json(); // 存储到全局变量
+        createAndRenderWindows(deviceData);
         return Promise.resolve();
     } catch (error) {
         console.error('Failed to load device data:', error);
@@ -211,13 +245,15 @@ function createAndRenderWindows(data) {
         // 添加到窗口列表
         allWindows.push(windowElement);
         
-        // 渲染设备列表
-        const treeElement = windowElement.querySelector('.tree-view');
-        if (treeElement) {
-            treeElement.innerHTML = renderItems(windowData.items);
-            
-            // 动态调整窗口宽度
-            adjustWindowWidth(windowElement, treeElement);
+        // 渲染设备列表（跳过状态窗口）
+        if (windowData.id !== 'statusWindow') {
+            const treeElement = windowElement.querySelector('.tree-view');
+            if (treeElement) {
+                treeElement.innerHTML = renderItems(windowData.items);
+                
+                // 动态调整窗口宽度
+                adjustWindowWidth(windowElement, treeElement);
+            }
         }
     });
     
@@ -352,6 +388,12 @@ function initializeWindowFunctions() {
         });
     });
 
+    // 添加设备点击事件监听器
+    addDeviceClickListeners();
+    
+    // 添加自定义展开控制
+    addCustomExpandControl();
+
     // 修复 checkClose 函数
     function checkClose(){
         var mainWindow = allWindows[0]; // 使用第一个窗口
@@ -380,6 +422,169 @@ function initializeWindowFunctions() {
             isClone = true;
         }
     }
+}
+
+// 添加自定义展开控制
+function addCustomExpandControl() {
+    // 禁用默认的summary点击行为
+    document.addEventListener('click', function(event) {
+        if (event.target.tagName === 'SUMMARY' || event.target.classList.contains('summary-text')) {
+            event.preventDefault();
+            
+            // 如果点击的是箭头区域（前12px），则允许展开
+            const summary = event.target.tagName === 'SUMMARY' ? event.target : event.target.parentElement;
+            const rect = summary.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            
+            // 只有点击箭头区域（前12px）才展开
+            if (clickX <= 12) {
+                const details = summary.parentElement;
+                if (details.tagName === 'DETAILS') {
+                    details.open = !details.open;
+                }
+            } else {
+                // 点击设备名称区域时，更新状态窗口
+                const deviceName = event.target.textContent || event.target.innerText;
+                const deviceInfo = findDeviceInfo(deviceName);
+                if (deviceInfo) {
+                    updateStatusWindow(deviceInfo);
+                }
+            }
+        }
+    });
+}
+
+// 添加设备点击事件监听器
+function addDeviceClickListeners() {
+    // 为所有设备元素添加点击事件
+    document.addEventListener('click', function(event) {
+        const clickedElement = event.target;
+        
+        // 检查是否点击了设备链接或文件夹摘要
+        if (clickedElement.tagName === 'A' || clickedElement.tagName === 'SUMMARY') {
+            const deviceName = clickedElement.textContent;
+            // 从当前设备数据中查找设备信息
+            const deviceInfo = findDeviceInfo(deviceName);
+            if (deviceInfo) {
+                updateStatusWindow(deviceInfo);
+            }
+        }
+    });
+}
+
+// 查找设备信息
+function findDeviceInfo(deviceName) {
+    if (!deviceData) return null;
+    
+    // 递归搜索所有窗口和设备
+    for (const window of deviceData.windows) {
+        const found = searchInItems(window.items, deviceName);
+        if (found) return found;
+    }
+    return null;
+}
+
+// 在设备项目中递归搜索
+function searchInItems(items, targetName) {
+    for (const item of items) {
+        // 去除HTML标签进行比较
+        const cleanName = item.name.replace(/<[^>]*>/g, '');
+        if (cleanName === targetName || item.name === targetName) {
+            return item;
+        }
+        
+        // 如果有子项目，递归搜索
+        if (item.children) {
+            const found = searchInItems(item.children, targetName);
+            if (found) return found;
+        }
+    }
+    return null;
+}
+
+// 更新状态窗口
+function updateStatusWindow(deviceInfo) {
+    const statusWindow = document.getElementById('statusWindow');
+    if (!statusWindow) return;
+    
+    const deviceImage = statusWindow.querySelector('#device-image');
+    const deviceNameEl = statusWindow.querySelector('#device-name');
+    const companionTimeEl = statusWindow.querySelector('#companion-time');
+    const placeholderText = statusWindow.querySelector('.placeholder-text');
+    
+    // 更新设备名称
+    if (deviceNameEl) {
+        deviceNameEl.textContent = deviceInfo.name;
+    }
+    
+    // 更新图片
+    if (deviceImage && placeholderText) {
+        if (deviceInfo.imagePath) {
+            deviceImage.src = deviceInfo.imagePath;
+            deviceImage.style.display = 'block';
+            placeholderText.style.display = 'none';
+            
+            // 添加图片加载错误处理
+            deviceImage.onerror = function() {
+                deviceImage.style.display = 'none';
+                placeholderText.style.display = 'block';
+                placeholderText.textContent = 'Image not found';
+            };
+        } else {
+            deviceImage.style.display = 'none';
+            placeholderText.style.display = 'block';
+            placeholderText.textContent = 'No image available';
+        }
+    }
+    
+    // 计算陪伴时间
+    if (companionTimeEl && deviceInfo.acquired) {
+        const companionDays = calculateCompanionTime(deviceInfo.acquired);
+        if (companionDays > 0) {
+            const formattedTime = formatCompanionTime(companionDays);
+            companionTimeEl.textContent = `This device has been with Levy for ${formattedTime}`;
+            companionTimeEl.style.display = 'block';
+        } else {
+            companionTimeEl.style.display = 'none';
+        }
+    } else if (companionTimeEl) {
+        companionTimeEl.style.display = 'none';
+    }
+}
+
+// 计算陪伴时间（天数）
+function calculateCompanionTime(acquiredDate) {
+    if (!acquiredDate) return 0;
+    
+    try {
+        const acquired = new Date(acquiredDate + '-01'); // 假设日期格式为 YYYY-MM
+        const today = new Date();
+        const diffTime = today - acquired;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        return diffDays > 0 ? diffDays : 0;
+    } catch (error) {
+        console.error('Error calculating companion time:', error);
+        return 0;
+    }
+}
+
+// 格式化陪伴时间为友好的文本
+function formatCompanionTime(days) {
+    if (days <= 0) return '';
+    
+    const years = Math.floor(days / 365);
+    const months = Math.floor((days % 365) / 30);
+    const remainingDays = days % 30;
+    
+    let result = [];
+    if (years > 0) result.push(`${years} year${years > 1 ? 's' : ''}`);
+    if (months > 0) result.push(`${months} month${months > 1 ? 's' : ''}`);
+    if (remainingDays > 0 || result.length === 0) {
+        result.push(`${remainingDays} day${remainingDays > 1 ? 's' : ''}`);
+    }
+    
+    return result.join(', ');
 }
 
 // 时间格式化函数
@@ -496,7 +701,9 @@ function renderItems(items) {
             return `
                 <li>
                     <details close>
-                        <summary${statusClass}${tooltipAttr}>${item.name}</summary>
+                        <summary${statusClass}${tooltipAttr}>
+                            <span class="summary-text">${item.name}</span>
+                        </summary>
                         <ul>
                             ${renderItems(item.children)}
                         </ul>
@@ -614,6 +821,7 @@ function highlightKeyInfo(text, itemType) {
                 text = text.replace(/(Kali\s+\d+)/g, '<span class="key-kali">$1</span>');
                 text = text.replace(/(macOS|iOS|iPadOS)/g, '<span class="key-apple">$1</span>');
                 text = text.replace(/(Android)/g, '<span class="key-android">$1</span>');
+                text = text.replace(/(Chrome\s+OS)/g, '<span class="key-chrome">$1</span>');
                 text = text.replace(/(Nintendo\s+Switch\s+OS)/g, '<span class="key-nintendo">$1</span>');
                 return text;
                 
